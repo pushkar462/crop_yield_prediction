@@ -3,6 +3,7 @@ import numpy as np
 import joblib
 import os
 import random
+import matplotlib.pyplot as plt
 random.seed(42)
 np.random.seed(42)
 
@@ -101,7 +102,14 @@ else:
 
 print(f"\nBest Model Selected: {best_name}")
 
+importances = best_model.feature_importances_
+feat_imp = pd.Series(importances, index=X.columns)
 
+feat_imp.sort_values(ascending=False).head(10).plot(kind="barh")
+plt.title("Top 10 Important Features")
+plt.tight_layout()
+plt.savefig("models/feature_importance.png")
+plt.close()
 # Save Model + Features + Metrics
 
 joblib.dump(best_model, "models/model.pkl")
