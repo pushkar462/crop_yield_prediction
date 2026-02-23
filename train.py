@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 import joblib
 import os
+import random
+random.seed(42)
+np.random.seed(42)
 
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
